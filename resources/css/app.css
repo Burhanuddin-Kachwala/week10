@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+@theme {
+    --font-sans: 'Merriweather', 'Hanken Grotesk', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-primary: #db8238;
+    --color-accent: #C5A992;
+    --color-secondary: #E5A992;
+    --color-dark: #2f2f2f;
+    --color-light: #F3F2EC;
+    --color-body-text: #757575;
+    --color-light-text: #afafaf;
+    --color-dark-text: #2f2f2f;
+    --color-link: #C5A992;
+
+}
+
+
+/* Theme Colors */
+:root {
+    --primary-color: #db8238;
+    --accent-color: #C5A992;
+    --secondary-color: #C5A992;
+    --dark-color: #2f2f2f;
+    --light-color: #F3F2EC;
+    --body-text-color: #757575;
+    --light-text-color: #afafaf;
+    --dark-text-color: #2f2f2f;
+}
+
+/* Fonts */
+:root {
+    --body-font: "Raleway", sans-serif;
+    --heading-font: "Prata", Georgia, serif;
+    --secondary-font: "Playfair Display", Georgia, serif;
+}
