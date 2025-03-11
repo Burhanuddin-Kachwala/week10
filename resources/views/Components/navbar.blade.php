@@ -26,20 +26,24 @@
                         <a href="#" title=""
                             class="flex text-xl font-medium text-primary hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
                             Gift Ideas
-                        </li>
+                    </li>
                     <li class="shrink-0 w-full lg:w-auto">
                         <form action="#" method="GET" class="flex items-center">
                             <div class="relative w-full lg:w-64">
-                                <input type="text" name="search" placeholder="Search items" class="px-4 py-2 border rounded-full text-sm w-full">
-                                <button type="submit" class="absolute right-1 top-2 mt-2 mr-2 transform -translate-y-1/2">
-                                    <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
+                                <input type="text" name="search" placeholder="Search items"
+                                    class="px-4 py-2 border rounded-full text-sm w-full">
+                                <button type="submit"
+                                    class="absolute right-1 top-2 mt-2 mr-2 transform -translate-y-1/2">
+                                    <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
                                     </svg>
                                 </button>
                             </div>
                         </form>
                     </li>
-                </ul> 
+                </ul>
             </div>
 
             <div class="flex items-center lg:space-x-2">
@@ -63,7 +67,151 @@
 
                 <div id="myCartDropdown1"
                     class="hidden z-10 mx-auto max-w-sm space-y-4 overflow-hidden rounded-lg bg-white p-4 antialiased shadow-lg dark:bg-gray-800">
-                    <!-- Cart items here -->
+                
+                    <!-- Item 1: Apple iPhone 15 -->
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <a href="#"
+                                class="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline">Apple
+                                iPhone 15</a>
+                            <p class="mt-0.5 truncate text-sm font-normal text-gray-500 dark:text-gray-400">$599</p>
+                        </div>
+                        <div class="flex items-center justify-end gap-6">
+                            <p class="text-sm font-normal leading-none text-gray-500 dark:text-gray-400">Qty: 1</p>
+                            <button data-tooltip-target="tooltipRemoveItem1" type="button"
+                                class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600">
+                                <span class="sr-only"> Remove </span>
+                                <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm7.7-3.7a1 1 0 0 0-1.4 1.4l2.3 2.3-2.3 2.3a1 1 0 1 0 1.4 1.4l2.3-2.3 2.3 2.3a1 1 0 0 0 1.4-1.4L13.4 12l2.3-2.3a1 1 0 0 0-1.4-1.4L12 10.6 9.7 8.3Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="tooltipRemoveItem1" role="tooltip"
+                                class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                                Remove item
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Item 2: Apple iPad Air -->
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <a href="#"
+                                class="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline">Apple
+                                iPad Air</a>
+                            <p class="mt-0.5 truncate text-sm font-normal text-gray-500 dark:text-gray-400">$499</p>
+                        </div>
+                        <div class="flex items-center justify-end gap-6">
+                            <p class="text-sm font-normal leading-none text-gray-500 dark:text-gray-400">Qty: 1</p>
+                            <button data-tooltip-target="tooltipRemoveItem2" type="button"
+                                class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600">
+                                <span class="sr-only"> Remove </span>
+                                <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm7.7-3.7a1 1 0 0 0-1.4 1.4l2.3 2.3-2.3 2.3a1 1 0 1 0 1.4 1.4l2.3-2.3 2.3 2.3a1 1 0 0 0 1.4-1.4L13.4 12l2.3-2.3a1 1 0 0 0-1.4-1.4L12 10.6 9.7 8.3Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="tooltipRemoveItem2" role="tooltip"
+                                class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                                Remove item
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Item 3: Apple Watch SE -->
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <a href="#"
+                                class="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline">Apple
+                                Watch SE</a>
+                            <p class="mt-0.5 truncate text-sm font-normal text-gray-500 dark:text-gray-400">$598</p>
+                        </div>
+                        <div class="flex items-center justify-end gap-6">
+                            <p class="text-sm font-normal leading-none text-gray-500 dark:text-gray-400">Qty: 2</p>
+                            <button data-tooltip-target="tooltipRemoveItem3" type="button"
+                                class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600">
+                                <span class="sr-only"> Remove </span>
+                                <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm7.7-3.7a1 1 0 0 0-1.4 1.4l2.3 2.3-2.3 2.3a1 1 0 1 0 1.4 1.4l2.3-2.3 2.3 2.3a1 1 0 0 0 1.4-1.4L13.4 12l2.3-2.3a1 1 0 0 0-1.4-1.4L12 10.6 9.7 8.3Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="tooltipRemoveItem3" role="tooltip"
+                                class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                                Remove item
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Item 4: Sony Playstation 5 -->
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <a href="#"
+                                class="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline">Sony
+                                Playstation 5</a>
+                            <p class="mt-0.5 truncate text-sm font-normal text-gray-500 dark:text-gray-400">$799</p>
+                        </div>
+                        <div class="flex items-center justify-end gap-6">
+                            <p class="text-sm font-normal leading-none text-gray-500 dark:text-gray-400">Qty: 1</p>
+                            <button data-tooltip-target="tooltipRemoveItem4" type="button"
+                                class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600">
+                                <span class="sr-only"> Remove </span>
+                                <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm7.7-3.7a1 1 0 0 0-1.4 1.4l2.3 2.3-2.3 2.3a1 1 0 1 0 1.4 1.4l2.3-2.3 2.3 2.3a1 1 0 0 0 1.4-1.4L13.4 12l2.3-2.3a1 1 0 0 0-1.4-1.4L12 10.6 9.7 8.3Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="tooltipRemoveItem4" role="tooltip"
+                                class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                                Remove item
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Item 5: Apple iMac 20" -->
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <a href="#"
+                                class="truncate text-sm font-semibold leading-none text-gray-900 dark:text-white hover:underline">Apple
+                                iMac 20"</a>
+                            <p class="mt-0.5 truncate text-sm font-normal text-gray-500 dark:text-gray-400">$8,997</p>
+                        </div>
+                        <div class="flex items-center justify-end gap-6">
+                            <p class="text-sm font-normal leading-none text-gray-500 dark:text-gray-400">Qty: 3</p>
+                            <button data-tooltip-target="tooltipRemoveItem5" type="button"
+                                class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-600">
+                                <span class="sr-only"> Remove </span>
+                                <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm7.7-3.7a1 1 0 0 0-1.4 1.4l2.3 2.3-2.3 2.3a1 1 0 1 0 1.4 1.4l2.3-2.3 2.3 2.3a1 1 0 0 0 1.4-1.4L13.4 12l2.3-2.3a1 1 0 0 0-1.4-1.4L12 10.6 9.7 8.3Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="tooltipRemoveItem5" role="tooltip"
+                                class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                                Remove item
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Proceed to Checkout Button -->
+                    <a href="#" title=""
+                        class="mb-2 me-2 inline-flex w-full items-center justify-center rounded-lg bg-secondary px-5 py-2.5 text-sm font-medium text-white hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                        role="button"> Proceed to Checkout </a>
                 </div>
 
                 @auth
@@ -108,7 +256,7 @@
                     <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            
+
                             <button type="submit" title=""
                                 class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
                                 Sign Out
