@@ -14,23 +14,25 @@ class SessionController extends Controller
     {
         return view('auth.login');
     }
-    public function store()
-    {
-        $attributes = request()->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
+   public function store()
+{
+    $attributes = request()->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required']
+    ]);
+
+    // REMOVE bcrypt() here. Laravel hashes and checks the password automatically.
+    if (!Auth::attempt($attributes)) {
+        throw ValidationException::withMessages([
+            'email' => 'Sorry, those credentials do not match.'
         ]);
-
-        if (! Auth::attempt($attributes)) {
-            throw ValidationException::withMessages([
-                'email' => 'Sorry, those credentials do not match.'
-            ]);
-        }
-
-        request()->session()->regenerate();
-
-        return redirect('/');
     }
+
+    request()->session()->regenerate();
+
+    return redirect('/');
+}
+
     public function destroy()
     {
         Auth::logout();

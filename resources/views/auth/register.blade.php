@@ -8,22 +8,22 @@
                 <h1 class="text-3xl font-bold text-gray-900 text-center mb-6">
                     Create an Account
                 </h1>
-                <x-forms.form method="POST" action="/register">
+                <x-forms.form method="POST" action="/register" id="register-form">
                     <div class="space-y-5">
                         <x-forms.label :label="'Full Name'" :name="'name'" />
-                        <x-forms.input placeholder="Enter your full name" class="w-full py-3" name="name"/>
-                        <x-forms.error name="name" />
+                        <x-forms.input placeholder="Enter your full name" class="w-full py-3" name="name" value='Burhanuddin Kachwala'/>
+                        <x-forms.error name="name"/>
                         
                         <x-forms.input label="Email Address" name="email" type="email" placeholder="example@mail.com"
                             class="w-full py-3" />
                         <x-forms.error name="email" />
                         
                         <x-forms.input label="Password" name="password" type="password" placeholder="********"
-                            class="w-full py-3" />
+                            class="w-full py-3" value="test@123"/>
                         <x-forms.error name="password" />
                         
                         <x-forms.input label="Confirm Password" name="password_confirmation" type="password"
-                            placeholder="********" class="w-full py-3" />
+                            placeholder="********" class="w-full py-3" value="test@123"/>
                         <x-forms.error name="password_confirmation" />
                     </div>
                     <x-forms.button class="bg-primary">

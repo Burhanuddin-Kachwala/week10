@@ -9,7 +9,7 @@
                 <h1 class="text-3xl font-bold text-gray-900 text-center mb-6">
                     Login to an Account
                 </h1>
-                <x-forms.form method="POST" action="/login">
+                <x-forms.form method="POST" action="/login" id="login-form">
                     <div class="space-y-5">
                        
 
@@ -18,7 +18,7 @@
                         <x-forms.error name="email" />
 
                         <x-forms.input label="Password" name="password" type="password" placeholder="********"
-                            class="w-full py-3" />
+                            class="w-full py-3" value="test@123"/>
                         <x-forms.error name="password" />
 
                     </div>

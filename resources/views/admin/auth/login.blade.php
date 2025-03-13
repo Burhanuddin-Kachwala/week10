@@ -9,16 +9,14 @@
                 <h1 class="text-3xl font-bold text-gray-900 text-center mb-6">
                     Admin Login
                 </h1>
-                <x-forms.form method="POST" action="/admin/login">
+                <x-forms.form method="POST" action="{{ route('admin.authenticate') }}" id="admin-login-form">
                     <div class="space-y-5">
-
-
                         <x-forms.input label="Email Address" name="email" type="email" placeholder="example@mail.com"
-                            class="w-full py-3" />
+                            class="w-full py-3" value="admin@admin.com" />
                         <x-forms.error name="email" />
 
                         <x-forms.input label="Password" name="password" type="password" placeholder="********"
-                            class="w-full py-3" />
+                            class="w-full py-3" value="admin@123"/>
                         <x-forms.error name="password" />
 
                     </div>
