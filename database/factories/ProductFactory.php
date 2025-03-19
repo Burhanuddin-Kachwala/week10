@@ -18,13 +18,14 @@ class ProductFactory extends Factory
     {
         $faker = \Faker\Factory::create('en_US'); // Set to English locale
         return [
-            'product_name' => $this->faker->sentence(3, true), // Book title in English
+            'name' => $this->faker->sentence(3, true), // Book title in English
             'description' => $this->faker->paragraph,
             'price' => $this->faker->randomFloat(2, 5, 100),
             'quantity' => $this->faker->numberBetween(1, 100),
             'image_path' => $this->faker->imageUrl(),
             'slug' => $this->faker->slug,
             'category_id' => \App\Models\Category::factory(),
+            'author_id' => \App\Models\Author::factory(),
             'status' => $this->faker->randomElement(['active', 'inactive', 'out_of_stock']),
         ];
     }

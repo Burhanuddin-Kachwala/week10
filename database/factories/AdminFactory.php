@@ -18,9 +18,9 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'admin@admin.com',
+            'first_name' => 'Stuart',
+            'last_name' => 'Little',
+            'email' => 'admin4@admin.com',
             'password' => Hash::make('admin@123'), // or use Hash::make('admin@123')
             'role_id' => \App\Models\Role::factory(),
             'status' => $this->faker->randomElement(['active', 'inactive']),

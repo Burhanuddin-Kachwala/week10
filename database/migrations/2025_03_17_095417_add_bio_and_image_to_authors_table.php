@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('role_name', 50);
-            $table->timestamps();
+        Schema::table('authors', function (Blueprint $table) {
+            $table->text('bio')->nullable()->after('name'); // Adjust 'name' if needed
+            $table->string('image')->nullable()->after('bio'); // Stores image path
         });
     }
 
@@ -23,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::table('authors', function (Blueprint $table) {
+            $table->dropColumn(['bio', 'image']);
+        });
     }
 };

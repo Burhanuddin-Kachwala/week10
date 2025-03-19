@@ -11,7 +11,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_name', 'description', 'price', 'stock_quantity', 'slug', 'category_id', 'status'];
+    protected $fillable = ['name', 'description','image', 'price', 'quantity', 'slug', 'category_id', 'author_id','status'];
 
     public function category(): BelongsTo
     {
@@ -26,5 +26,9 @@ class Product extends Model
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class);
     }
 }

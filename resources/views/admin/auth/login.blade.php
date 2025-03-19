@@ -12,7 +12,7 @@
                 <x-forms.form method="POST" action="{{ route('admin.authenticate') }}" id="admin-login-form">
                     <div class="space-y-5">
                         <x-forms.input label="Email Address" name="email" type="email" placeholder="example@mail.com"
-                            class="w-full py-3" value="admin@admin.com" />
+                            class="w-full py-3" value="admin3@admin.com" />
                         <x-forms.error name="email" />
 
                         <x-forms.input label="Password" name="password" type="password" placeholder="********"

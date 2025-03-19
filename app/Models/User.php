@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class User extends Authenticatable
 {
     use HasFactory;
-    protected $primaryKey = 'user_id'; // Specify custom primary key
+   
 
     protected $fillable = ['name', 'email', 'password'];
 

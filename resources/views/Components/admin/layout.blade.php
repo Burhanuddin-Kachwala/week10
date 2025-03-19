@@ -9,6 +9,7 @@
     <!-- Font Awesome 6 (Latest) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Admin Dashboard</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -17,7 +18,7 @@
         <x-admin.sidebar />
 
         <!-- Main Content -->
-        <main class="flex-1 p-6 bg-gray-100">
+        <main class="flex-1 p-3 bg-gray-100 overflow-auto">
             {{ $slot }}
         </main>
     </div>
@@ -29,15 +30,18 @@
                 const isExpanded = button.getAttribute('aria-expanded') === 'true';
                 const dropdownContent = document.getElementById(button.getAttribute('aria-controls'));
                 
-                button.setAttribute('aria-expanded', !isExpanded);
-                dropdownContent.classList.toggle('hidden');
-                button.querySelector('svg:last-child').classList.toggle('rotate-180');
+                if (dropdownContent) {
+                    button.setAttribute('aria-expanded', !isExpanded);
+                    dropdownContent.classList.toggle('hidden');
+                    button.querySelector('svg:last-child').classList.toggle('rotate-180');
+                }
             });
         });
     </script>
-    <!-- Add Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css" crossorigin="anonymous">
-    </script>
+<!-- jQuery Script should be loaded first -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Add jQuery Validation Script -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 </body>
 
 </html>

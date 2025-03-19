@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->id('payment_id');
+            $table->id('id');
             $table->unsignedBigInteger('order_id');
 
-            $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('payment_method', ['credit_card', 'debit_card', 'paypal', 'cash_on_delivery']);
             $table->decimal('amount', 10);
             $table->string('transaction_id', 100)->unique();

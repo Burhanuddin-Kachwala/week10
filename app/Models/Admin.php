@@ -12,7 +12,7 @@ class Admin extends Authenticatable
     use HasFactory;
     // protected $guard = 'admin';
 
-    protected $primaryKey = "admin_id";
+
 
     protected $table = 'admins';
 
