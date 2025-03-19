@@ -1,6 +1,6 @@
 <x-admin.layout class="overflow-x-auto">
     <x-forms.form method="POST" action="{{ route('admin.authors.update', $author->id) }}" id="edit-author"
-        class="p-6 bg-white rounded-lg shadow-md max-w-4xl mx-auto border border-gray-300">
+        class="p-6 bg-white rounded-lg shadow-md max-w-4xl mx-auto border border-gray-300" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

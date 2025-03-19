@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Author;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 
 class AuthorController extends Controller
 {
@@ -22,13 +23,13 @@ class AuthorController extends Controller
 
     public function store(Request $request)
     {
-       
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|unique:authors,name|max:255',
             'bio' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Handle Image Upload
         $imagePath = null;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -36,6 +37,7 @@ class AuthorController extends Controller
             $imagePath = $image->storeAs('images', $imageName, 'public');
         }
 
+        // Create Author
         Author::create([
             'name' => $request->input('name'),
             'bio' => $request->input('bio'),
@@ -54,9 +56,14 @@ class AuthorController extends Controller
 
     public function update(Request $request)
     {
+        $authorId = $request->input('id');
         $request->validate([
-            'id' => 'required|exists:authors,id',
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('authors', 'name')->ignore($authorId),
+            ],
             'bio' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);

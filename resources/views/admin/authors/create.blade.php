@@ -11,6 +11,7 @@
                 <x-forms.input placeholder="Author name" class="w-full py-2 px-3 border rounded-md focus:ring-blue-500"
                     name="name" value="" />
                 <x-forms.error name="name" />
+                
             </div>
 
             <div>
