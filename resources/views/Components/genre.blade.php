@@ -1,5 +1,6 @@
 @php
-    $genres = ['Fiction', 'Non-Fiction', 'Mystery', 'Romance', 'Science Fiction', 'Fantasy', 'Biography', 'History', 'Self-Help', 'Children'];
+    use App\Models\Category;
+    $genres = Category::pluck('name');
 @endphp
 
 <div class="container mx-auto p-6 flex justify-center">

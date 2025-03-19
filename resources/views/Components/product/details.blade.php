@@ -1,12 +1,14 @@
 <div>
     <!-- Product Name and SKU -->
     <h2 class="text-3xl font-bold mb-2">{{ $name }}</h2>
-    <p class="text-gray-600 mb-4">SKU: {{ $sku }}</p>
+    <h3 class="text-xl text-gray-600 mb-4">{{ $category }}</h3>
+    <h3 class="text-xl text-gray-600 mb-4">{{ $author }}</h3>
+    {{-- <p class="text-gray-600 mb-4">SKU: {{ $sku }}</p> --}}
 
     <!-- Price -->
     <div class="mb-4">
-        <span class="text-2xl font-bold mr-2">${{ $price }}</span>
-        <span class="text-gray-500 line-through">${{ $originalPrice }}</span>
+        <span class="text-2xl font-bold mr-2">{{ $price }}</span>
+        {{-- <span class="text-gray-500 line-through">${{ $originalPrice }}</span> --}}
     </div>
 
     <!-- Rating -->
@@ -18,11 +20,10 @@
                 clip-rule="evenodd" />
             </svg>
             @endfor
-            <span class="ml-2 text-gray-600">{{ $rating }} ({{ $reviews }} reviews)</span>
+            {{-- <span class="ml-2 text-gray-600">{{ $rating }} ({{ $reviews }} reviews)</span> --}}
     </div>
 
-    <!-- Description -->
-    <p class="text-gray-700 mb-6">{{ $description }}</p>
+    <p class="text-gray-700 mb-6">{!! $description !!}</p>
 
     <!-- Quantity -->
     <div class="mb-6">
@@ -52,7 +53,7 @@
             Buy Now
         </a>
     </div>
-
+{{-- 
     <!-- Key Features -->
     <div>
         <h3 class="text-lg font-semibold mb-2">Key Features:</h3>
@@ -61,5 +62,5 @@
             <li>{{ $feature }}</li>
             @endforeach
         </ul>
-    </div>
+    </div> --}}
 </div>
