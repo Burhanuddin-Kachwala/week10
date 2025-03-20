@@ -57,5 +57,16 @@ class UserController extends Controller
         // Return the view with the category data
         return view('user.category', compact('category'));
     }
+    public function search(Request $request)
+    {
+        // Logic for searching products
+        // Get the search query from the request
+        $query = $request->input('query');
+
+   
+
+        // Return the view with the search results
+        return view('user.search', compact('query'));
+    }
 
 }

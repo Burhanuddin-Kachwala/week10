@@ -1,7 +1,8 @@
 @props([
 'noOfProducts' => null,
 'heading' => 'Books',
-'categoryId' => null
+'categoryId' => null,
+'search' => null, // Add the search parameter
 ])
 
 @php
@@ -9,12 +10,28 @@ $query = \App\Models\Product::latest();
 
 // Filter by category if provided
 if ($categoryId) {
-$query->where('category_id', $categoryId);
+    $query->where('category_id', $categoryId);
+}
+
+// Filter by search term if provided
+if ($search) {
+// Search by product name
+$query->where('name', 'like', "%{$search}%");
+
+
+$query->orWhereHas('category', function ($subQuery) use ($search) {
+$subQuery->where('name', 'like', "%{$search}%");
+});
+
+
+$query->orWhereHas('author', function ($subQuery) use ($search) {
+$subQuery->where('name', 'like', "%{$search}%");
+});
 }
 
 // Limit number of products if specified
 if ($noOfProducts) {
-$query->limit($noOfProducts);
+    $query->limit($noOfProducts);
 }
 
 $products = $query->get();
@@ -22,9 +39,9 @@ $products = $query->get();
 // Get category name for heading if categoryId is provided
 $categoryName = '';
 if ($categoryId) {
-$category = \App\Models\Category::find($categoryId);
+    $category = \App\Models\Category::find($categoryId);
 if ($category) {
-$categoryName = $category->name;
+    $categoryName = $category->name;
 }
 }
 
@@ -39,7 +56,8 @@ $displayHeading = $categoryId && $categoryName ? "$heading - $categoryName" : $h
     @foreach ($products as $product)
     <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="{{ route('products.show', $product->slug) }}" class="flex flex-col">
-            <img src="{{asset($product->image)}}" alt="{{ $product->name}}" class="h-80 w-72 object-cover rounded-t-xl" />
+            <img src="{{asset($product->image)}}" alt="{{ $product->name}}"
+                class="h-80 w-72 object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-72">
                 <span class="text-gray-400 mr-3 uppercase text-xs">{{ $product->author->name }}</span>
                 <p class="text-lg font-bold text-black truncate block capitalize">{{ $product->name }}</p>

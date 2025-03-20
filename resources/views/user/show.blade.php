@@ -11,13 +11,19 @@
 
             <!-- Product Details -->
             <div class="w-full md:w-1/2 px-4">
-                <x-product.details name="{{ $product->name }}" author="{{ $product->author->name }}" price="{{ $product->price }}"
-                    category="{{ $product->category->name }}" 
+                <x-product.details 
+                    id="{{ $product->id }}"
+                    name="{{ $product->name }}" 
+                    author="{{ $product->author->name }}" 
+                    price="{{ $product->price }}"
+                    category="{{ $product->category->name }}"                    
+                    description="{!! $product->description !!}"
                     {{-- rating="{{ $product->rating }}" reviews="{{ $product->reviews }}" --}}
-                    description="{{ $product->description }}"
-                    {{-- :features="$product->features" --}}
+                   {{-- :features="$product->features" --}}
                      />
             </div>
+
         </div>
     </div>
+
 </x-layout>
