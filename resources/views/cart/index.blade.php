@@ -112,7 +112,7 @@
         @endif
     </div>
 
-    @push('scripts')
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Handle quantity buttons
@@ -132,5 +132,5 @@
             });
         });
     </script>
-    @endpush
+
 </x-layout>
