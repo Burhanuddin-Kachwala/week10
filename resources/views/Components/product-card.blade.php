@@ -1,6 +1,6 @@
 @props([
 'noOfProducts' => null,
-'heading' => 'Products',
+'heading' => 'Books',
 'categoryId' => null
 ])
 
@@ -39,7 +39,7 @@ $displayHeading = $categoryId && $categoryName ? "$heading - $categoryName" : $h
     @foreach ($products as $product)
     <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="{{ route('products.show', $product->slug) }}" class="flex flex-col">
-            <img src="{{$product->image}}" alt="{{ $product->name}}" class="h-80 w-72 object-cover rounded-t-xl" />
+            <img src="{{asset($product->image)}}" alt="{{ $product->name}}" class="h-80 w-72 object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-72">
                 <span class="text-gray-400 mr-3 uppercase text-xs">{{ $product->author->name }}</span>
                 <p class="text-lg font-bold text-black truncate block capitalize">{{ $product->name }}</p>

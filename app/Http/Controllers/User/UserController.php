@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -47,4 +48,14 @@ class UserController extends Controller
     {
         // Logic for deleting a specific user
     }
+    public function category($slug)
+    {
+        // Logic for showing a specific category
+        // Find the category by slug
+        $category = Category::where('slug', $slug)->firstOrFail();
+
+        // Return the view with the category data
+        return view('user.category', compact('category'));
+    }
+
 }
