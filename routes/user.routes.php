@@ -3,8 +3,9 @@
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SessionController;
+use App\Http\Controllers\CartController;
 
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\RegisterUserController;
 
@@ -38,3 +39,10 @@ Route::get('/categories/{category:slug}', [UserController::class, 'category'])->
 Route::get('/cart', function () {
     return view('/cart');
 });
+
+// Cart routes
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
