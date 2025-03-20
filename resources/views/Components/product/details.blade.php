@@ -1,8 +1,15 @@
 <div>
     <!-- Product Name and SKU -->
     <h2 class="text-3xl font-bold mb-2">{{ $name }}</h2>
-    <h3 class="text-xl text-gray-600 mb-4">{{ $category }}</h3>
-    <h3 class="text-xl text-gray-600 mb-4">{{ $author }}</h3>
+    <!-- Category with a badge-like style -->
+    <h3 class="text-lg font-semibold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full inline-block mb-2">
+        {{ $category }}
+    </h3>
+    
+    <!-- Author with an elegant italic style -->
+    <h3 class="text-lg text-gray-700 italic mb-4">
+         {{ $author }}
+    </h3>
     {{-- <p class="text-gray-600 mb-4">SKU: {{ $sku }}</p> --}}
 
     <!-- Price -->
@@ -23,7 +30,7 @@
             {{-- <span class="ml-2 text-gray-600">{{ $rating }} ({{ $reviews }} reviews)</span> --}}
     </div>
 
-    <p class="text-gray-700 mb-6">{!! $description !!}</p>
+    <p class="text-gray-700 mb-6">{{ $description }}</p>
 
     <!-- Quantity -->
     <div class="mb-6">
