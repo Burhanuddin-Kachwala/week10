@@ -28,9 +28,9 @@
                             Gift Ideas
                     </li>
                     <li class="shrink-0 w-full lg:w-auto">
-                        <form action="#" method="GET" class="flex items-center">
+                        <form action="{{route('search')}}" method="GET" class="flex items-center">
                             <div class="relative w-full lg:w-64">
-                                <input type="text" name="search" placeholder="Search items"
+                                <input type="text" name="query" placeholder="Search items"
                                     class="px-4 py-2 border rounded-full text-sm w-full">
                                 <button type="submit"
                                     class="absolute right-1 top-2 mt-2 mr-2 transform -translate-y-1/2">

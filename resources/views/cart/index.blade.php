@@ -113,24 +113,41 @@
     </div>
 
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle quantity buttons
-            document.querySelectorAll('.quantity-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const input = this.parentNode.querySelector('input[name="quantity"]');
-                    const currentValue = parseInt(input.value);
-                    
-                    if (this.dataset.action === 'decrease') {
-                        if (currentValue > 1) {
-                            input.value = currentValue - 1;
-                        }
-                    } else if (this.dataset.action === 'increase') {
-                        input.value = currentValue + 1;
+<script>
+   
+    $(document).ready(function() {
+      
+        $('.quantity-btn').on('click', function() {
+            const $input = $(this).parent().find('input[name="quantity"]');
+            const productId = $(this).parent().find('input[name="product_id"]').val();
+            const currentValue = parseInt($input.val());
+            const newValue = $(this).data('action') === 'decrease' ? Math.max(1, currentValue - 1) : currentValue + 1;
+
+            // Update the quantity input
+            $input.val(newValue);
+
+            // Send an AJAX request to update the cart
+            $.ajax({
+                
+                url: "{{ route('cart.update') }}",
+                method: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    product_id: productId,
+                    quantity: newValue
+                },
+                success: function(data) {
+                    // Update the cart UI based on the response
+                    if (data.success) {
+                        // Optionally update the total or cart item count here
+                    } else {
+                        // Handle errors (if any)
+                        alert('Failed to update cart');
                     }
-                });
+                }
             });
         });
-    </script>
+    });
+</script>
 
 </x-layout>
