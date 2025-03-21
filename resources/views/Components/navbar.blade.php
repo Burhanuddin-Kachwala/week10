@@ -11,7 +11,7 @@
 
                 <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
                     <li>
-                        <a href="#" title=""
+                        <a href="{{route('homepage')}}" title=""
                             class="flex  text-xl font-medium text-primary hover:text-primary-700 dark:text-primary dark:hover:text-primary-500">
                             Home
                         </a>
@@ -19,13 +19,13 @@
                     <li class="shrink-0">
                         <a href="#" title=""
                             class="flex text-xl font-medium text-primary hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                            Best Sellers
+                            Genres
                         </a>
                     </li>
                     <li class="shrink-0">
-                        <a href="#" title=""
+                        <a href="{{route('products.all')}}" title=""
                             class="flex text-xl font-medium text-primary hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                            Gift Ideas
+                            Books
                     </li>
                     <li class="shrink-0 w-full lg:w-auto">
                         <form action="{{route('search')}}" method="GET" class="flex items-center">

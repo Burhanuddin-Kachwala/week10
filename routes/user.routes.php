@@ -33,6 +33,7 @@ Route::get('/check-user-email', function (Request $request) {
     return response()->json(['exists' => $exists]);
 });
 
+Route::get('/products', [UserController::class, 'showAll'])->name('products.all');
 Route::get('/products/{product:slug}', [UserController::class, 'show'])->name('products.show');
 Route::get('/categories/{category:slug}', [UserController::class, 'category'])->name('categories.show');
 Route::get('/search', [UserController::class, 'search'])->name('search');

@@ -68,5 +68,9 @@ class UserController extends Controller
         // Return the view with the search results
         return view('user.search', compact('query'));
     }
+    public function showAll(){
+        
+        return view('user.showAll');
+    }
 
 }
