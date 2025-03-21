@@ -29,7 +29,7 @@ Route::middleware(['auth:user'])->group(function () {
 
 Route::get('/check-user-email', function (Request $request) {
 
-    $exists = User::where('name', $request->name)->exists();
+    $exists = User::where('email', $request->email)->exists();
     return response()->json(['exists' => $exists]);
 });
 

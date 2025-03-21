@@ -3,7 +3,7 @@
       @php
         $heading = sprintf('Search Results for "%s"', $query);
     @endphp
-<x-product-card :search="$query" :heading="$heading" />        
+        <x-product-card :search="$query" :heading="$heading" />        
     </div>
 
     <x-footer />

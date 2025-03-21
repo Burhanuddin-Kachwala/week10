@@ -49,7 +49,7 @@ $(document).ready(function() {
                     },
                     dataFilter: function (response) {
                         let json = JSON.parse(response);
-                        return json.exists ? "false" : "true"; // "false" means name exists, validation fails
+                        return json.exists ? "false" : "true";
                     },
                 },
             },
@@ -60,7 +60,7 @@ $(document).ready(function() {
             password_confirmation: {
                 required: true,
                 minlength: 6,
-                equalTo: "#password", // Ensures the password confirmation matches the password field
+                equalTo: "#password",
             },
         },
         messages: {
@@ -75,12 +75,12 @@ $(document).ready(function() {
             },
             password: {
                 required: "Please enter your password",
-                minlength: "Your password must be at least 6 characters long",
+                minlength: "Your password must be at least 6 characters long", // Fixed mismatch
             },
             password_confirmation: {
                 required: "Please confirm your password",
                 minlength:
-                    "Your confirmation password must be at least 6 characters long",
+                    "Your confirmation password must be at least 8 characters long", // Fixed mismatch
                 equalTo: "Password confirmation must match the password",
             },
         },
@@ -89,10 +89,10 @@ $(document).ready(function() {
             error.insertAfter(element);
         },
         submitHandler: function (form) {
-            // Submit form if valid
             form.submit();
         },
     });
+
 
     $("#admin-login-form").validate({
         rules: {

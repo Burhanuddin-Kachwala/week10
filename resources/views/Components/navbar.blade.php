@@ -26,6 +26,7 @@
                         <a href="{{route('products.all')}}" title=""
                             class="flex text-xl font-medium text-primary hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
                             Books
+                        </a>
                     </li>
                     <li class="shrink-0 w-full lg:w-auto">
                         <form action="{{route('search')}}" method="GET" class="flex items-center">
