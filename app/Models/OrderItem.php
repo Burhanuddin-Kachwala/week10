@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class OrderItem extends Model
 {
     use HasFactory;
+    protected $table = 'order_items';
 
-    protected $fillable = ['order_id', 'product_id', 'quantity', 'price'];
+
+    protected $fillable = ['order_id', 'product_id', 'name', 'price', 'quantity'];
 
     public function order(): BelongsTo
     {

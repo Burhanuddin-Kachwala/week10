@@ -48,6 +48,7 @@
             </div>
 
             <div class="flex items-center lg:space-x-2">
+                <a href="{{route('cart.index')}}">
                 <button id="myCartDropdownButton1" data-dropdown-toggle="myCartDropdown1" type="button"
                     class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
                     <span class="sr-only">
@@ -65,8 +66,9 @@
                             d="m19 9-7 7-7-7" />
                     </svg>
                 </button>
+                </a>
 
-                <div id="myCartDropdown1"
+                {{-- <div id="myCartDropdown1"
                     class="hidden z-10 mx-auto max-w-sm space-y-4 overflow-hidden rounded-lg bg-white p-4 antialiased shadow-lg dark:bg-gray-800">
                 
                     <!-- Item 1: Apple iPhone 15 -->
@@ -213,9 +215,9 @@
                     <a href="#" title=""
                         class="mb-2 me-2 inline-flex w-full items-center justify-center rounded-lg bg-secondary px-5 py-2.5 text-sm font-medium text-white hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                         role="button"> Proceed to Checkout </a>
-                </div>
+                </div> --}}
 
-                @auth
+                @auth('user')
                 <button id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button"
                     class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
                     <svg class="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -246,7 +248,7 @@
                         <li><a href="#" title=""
                                 class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
                                 Favourites </a></li>
-                        <li><a href="#" title=""
+                        <li><a href="{{route('addresses')}}" title=""
                                 class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
                                 Delivery Addresses </a></li>
                         <li><a href="#" title=""
@@ -257,8 +259,8 @@
                     <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
-                            <button type="submit" title=""
+                            
+                            <button type="submit"
                                 class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
                                 Sign Out
                             </button>
@@ -267,7 +269,7 @@
                 </div>
                 @endauth
 
-                @guest
+                @guest('user')
                 <a href="{{ route('login') }}" title=""
                     class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
                     <svg class="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"

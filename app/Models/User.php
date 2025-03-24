@@ -19,8 +19,12 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    public function reviews(): HasMany
+    // public function reviews(): HasMany
+    // {
+    //     return $this->hasMany(Review::class);
+    // }
+    public function addresses()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Address::class);
     }
 }
