@@ -45,11 +45,11 @@
         @endif
     </div>
     {{ $categories->links() }}
-    @if(session('success'))
+    {{-- @if(session('success'))
     <div class="fixed top-0 left-3/4 transform -translate-x-1/2 mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-full shadow-lg"
         role="alert" id="success-alert">
         <span class="block sm:inline">{{ session('success') }}</span>
-    </div>
+    </div> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {

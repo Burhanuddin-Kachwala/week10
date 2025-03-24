@@ -30,12 +30,13 @@ class AdminController extends Controller
 
     public function store(AdminLoginRequest $request)
     {
+       
         // The validation is already handled by the StoreAdminRequest FormRequest
 
         try {
             // Attempt to authenticate the admin
             $credentials = $request->validated(); // Retrieve validated data from the form request
-
+           
             if (Auth::guard('admin')->attempt($credentials)) {
                 // Regenerate session after successful login
                 $request->session()->regenerate();
