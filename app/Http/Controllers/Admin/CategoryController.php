@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreCategoryRequest;
+use App\Http\Requests\Admin\UpdateCategoryRequest;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('created_at', 'desc')->simplePaginate(5);
-        return view('admin.categories.index', compact('categories'));
+        try {
+            // Fetch paginated categories
+            $categories = Category::orderBy('created_at', 'desc')->simplePaginate(5);
+            return view('admin.categories.index', compact('categories'));
+        } catch (\Exception $e) {
+            Log::error('Error fetching categories: ' . $e->getMessage());
+            return redirect()->route('admin.categories')->with('error', 'Failed to fetch categories.');
+        }
     }
 
     public function create()
@@ -21,43 +30,39 @@ class CategoryController extends Controller
         return view('admin.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|unique:categories,name|max:255',
-        ]);
+        // Access validated data
+        $validatedData = $request->validated();
 
+        // Create the category
         Category::create([
-            'name' => $request->input('name'),
-            'slug' => Str::slug($request->input('name')),
+            'name' => $validatedData['name'],
+            'slug' => Str::slug($validatedData['name']),
         ]);
 
         return redirect()->route('admin.categories')->with('success', 'Category created successfully.');
     }
 
+    // Edit method remains unchanged
     public function edit($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
         return view('admin.categories.edit', compact('category'));
     }
 
-    public function update(Request $request)
+    // Update method uses UpdateCategoryRequest
+    public function update(UpdateCategoryRequest $request)
     {
-        $categoryId = $request->input('id');
-        $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('categories', 'name')->ignore($categoryId),
-            ],
-        ]);
+        // Access validated data
+        $validatedData = $request->validated();
 
+        // Find the category by ID passed in the request
         $category = Category::findOrFail($request->input('id'));
 
+        // Update the category with the validated name
         $category->update([
-            'name' => $request->input('name'),
-            
+            'name' => $validatedData['name'],
         ]);
 
         return redirect()->route('admin.categories')->with('success', 'Category updated successfully.');
@@ -65,9 +70,15 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        try {
+            // Fetch category and delete
+            $category = Category::findOrFail($id);
+            $category->delete();
 
-        return redirect()->route('admin.categories')->with('success', 'Category deleted successfully.');
+            return redirect()->route('admin.categories')->with('success', 'Category deleted successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error deleting category: ' . $e->getMessage());
+            return redirect()->route('admin.categories')->with('error', 'Failed to delete category.');
+        }
     }
 }
