@@ -11,12 +11,12 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 
 
-Route::prefix("admin")->group(function () {
+    Route::prefix("admin")->group(function () {
 
-    Route::middleware("guest:admin")->group(function () {
-        Route::get("login", [AdminController::class, "create"])->name("admin.login");
-        Route::post("login", [AdminController::class, "store"])->name("admin.authenticate");
-    });
+        Route::middleware("guest:admin")->group(function () {
+            Route::get("login", [AdminController::class, "create"])->name("admin.login");
+            Route::post("login", [AdminController::class, "store"])->name("admin.authenticate");
+        });
 
     Route::middleware("auth:admin")->group(function () {
         Route::get("/dashboard", [AdminController::class, 'index'])->name("admin.dashboard");

@@ -115,7 +115,7 @@ class Authenticate implements AuthenticatesRequests
     {
        // dd($guards);
         if (in_array("user", $guards)) {
-            return route("user.login");
+            return route("login");
         } else if (in_array("admin", $guards)) {
             return route("admin.login");
         }

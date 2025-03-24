@@ -7,6 +7,9 @@ import.meta.glob([
     '../images/**'
 ]);
 
+
+
+
 // Add this to your main JS file or include it in a script tag
 
 document.addEventListener('DOMContentLoaded', function() {

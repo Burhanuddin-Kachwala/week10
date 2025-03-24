@@ -6,13 +6,22 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use App\Http\Requests\Admin\StoreUserRequest;  // Use existing StoreUserRequest
+use App\Http\Requests\Admin\UpdateUserRequest; // Use existing UpdateUserRequest
+use Exception;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('created_at', 'desc')->simplePaginate(10);
-        return view('admin.users.index', compact('users'));
+        try {
+            $users = User::orderBy('created_at', 'desc')->simplePaginate(10);
+            return view('admin.users.index', compact('users'));
+        } catch (Exception $e) {
+            Log::error('Error fetching users: ' . $e->getMessage());
+            return redirect()->route('admin.users')->with('error', 'Failed to fetch users.');
+        }
     }
 
     public function create()
@@ -20,58 +29,65 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request) // Using the existing StoreUserRequest
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        try {
+            User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+            ]);
 
-        User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
-
-        return redirect()->route('admin.users')->with('success', 'User created successfully.');
+            return redirect()->route('admin.users')->with('success', 'User created successfully.');
+        } catch (Exception $e) {
+            Log::error('Error creating user: ' . $e->getMessage());
+            return redirect()->route('admin.users.create')->with('error', 'Failed to create user.');
+        }
     }
 
     public function edit($id)
     {
-        
-        $user = User::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
+        try {
+            $user = User::findOrFail($id);
+            return view('admin.users.edit', compact('user'));
+        } catch (Exception $e) {
+            Log::error('Error fetching user for edit: ' . $e->getMessage());
+            return redirect()->route('admin.users')->with('error', 'Failed to fetch user details.');
+        }
     }
 
-    public function update(Request $request)
+    public function update(UpdateUserRequest $request) // Using the existing UpdateUserRequest
     {
-        $request->validate([
-            'id' => 'required|exists:users,id',
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $request->input('id'),
-            'password' => 'nullable|string|min:8',
-        ]);
+        try {
+            $user = User::findOrFail($request->input('id'));
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->status = $request->input('status');
 
-        $user = User::findOrFail($request->input('id'));
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->status = $request->input('status');
+            if ($request->filled('password')) {
+                $user->password = Hash::make($request->input('password'));
+            }
 
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->input('password'));
+            $user->save();
+
+            return redirect()->route('admin.users')->with('success', 'User updated successfully.');
+        } catch (Exception $e) {
+            Log::error('Error updating user: ' . $e->getMessage());
+            return redirect()->route('admin.users.edit', ['id' => $request->input('id')])
+                ->with('error', 'Failed to update user.');
         }
-
-        $user->save();
-
-        return redirect()->route('admin.users')->with('success', 'User updated successfully.');
     }
 
     public function delete($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
 
-        return redirect()->route('admin.users')->with('success', 'User deleted successfully.');
+            return redirect()->route('admin.users')->with('success', 'User deleted successfully.');
+        } catch (Exception $e) {
+            Log::error('Error deleting user: ' . $e->getMessage());
+            return redirect()->route('admin.users')->with('error', 'Failed to delete user.');
+        }
     }
 }
