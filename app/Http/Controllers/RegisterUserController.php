@@ -25,8 +25,7 @@ class RegisterUserController extends Controller
             $attributes['password'] = bcrypt($attributes['password']);
 
             $user = User::create($attributes);
-            Auth::login($user);
-
+            Auth::guard('user')->login($user);
             return redirect('/')->with('success', 'Registration successful!');
         } catch (Exception $e) {
             Log::error('Registration Error: ' . $e->getMessage());

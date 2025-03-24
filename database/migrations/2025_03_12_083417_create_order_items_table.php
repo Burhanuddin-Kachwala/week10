@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->id('id');
+            $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->string('product_name');
+            $table->unsignedBigInteger('product_id'); 
+            $table->string('name');
             $table->decimal('price', 10, 2);
-            $table->timestamps();
-
+            $table->integer('quantity');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

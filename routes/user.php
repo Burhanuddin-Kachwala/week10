@@ -4,10 +4,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\User\AddressController;
 
 
 Route::get('/', function () {
@@ -23,7 +25,16 @@ Route::middleware(['guest:user'])->group(function () {
 });
 
 Route::middleware(['auth:user'])->group(function () {
+   
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
+    //checkout routes
+
+    Route::get('/checkout', [OrderController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [OrderController::class, 'store'])->name('checkout');
+    Route::get('/order/confirmation/{order}', [OrderController::class, 'confirmation'])->name('order.confirmation');
+    //routes for address
+    Route::get('/addresses', [AddressController::class, 'index'])->name('addresses');
+    Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
 });
 
 
@@ -38,9 +49,7 @@ Route::get('/products/{product:slug}', [UserController::class, 'show'])->name('p
 Route::get('/categories/{category:slug}', [UserController::class, 'category'])->name('categories.show');
 Route::get('/search', [UserController::class, 'search'])->name('search');
 
-Route::get('/cart', function () {
-    return view('/cart');
-});
+
 
 // Cart routes
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -48,3 +57,5 @@ Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add')
 Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+
+

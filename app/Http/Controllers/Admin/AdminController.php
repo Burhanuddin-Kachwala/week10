@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Admin\AdminLoginRequest;  // Assuming StoreAdminRequest is the name of your form request
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use App\Http\Requests\Admin\AdminLoginRequest;  // Assuming StoreAdminRequest is the name of your form request
 
 class AdminController extends Controller
 {
@@ -19,8 +22,14 @@ class AdminController extends Controller
     public function index()
     {
         try {
+            $totalBooks = Product::count();
+            $totalCategories = Category::count();
+            $totalOrders = Order::count();
+            $totalRevenue = Order::sum('total_amount'); // Ensure 'total_amount' exists
+            $recentOrders = Order::with('user')->latest()->take(5)->get();
+
+            return view('admin.index', compact('totalBooks', 'totalCategories', 'totalOrders', 'totalRevenue', 'recentOrders'));
             // Render the admin dashboard page
-            return view("admin.index");
         } catch (\Exception $e) {
             // Log the error for debugging
             Log::error('Error loading admin dashboard: ' . $e->getMessage());
@@ -30,13 +39,12 @@ class AdminController extends Controller
 
     public function store(AdminLoginRequest $request)
     {
-       
         // The validation is already handled by the StoreAdminRequest FormRequest
 
         try {
             // Attempt to authenticate the admin
             $credentials = $request->validated(); // Retrieve validated data from the form request
-           
+
             if (Auth::guard('admin')->attempt($credentials)) {
                 // Regenerate session after successful login
                 $request->session()->regenerate();

@@ -14,6 +14,7 @@ class SessionController extends Controller
     // Show the login form
     public function create()
     {
+       
         return view('auth.login');
     }
 
@@ -25,7 +26,7 @@ class SessionController extends Controller
             $attributes = $request->validated();
 
             // Attempt to log the user in
-            if (!Auth::attempt($attributes)) {
+            if (!Auth::guard('user')->attempt($attributes)) {
                 // Log the failure and pass the error message via session
                 Log::warning('Login attempt failed for email: ' . $request->email);
 
@@ -50,24 +51,10 @@ class SessionController extends Controller
     }
 
     // Handle logout
-    public function destroy(Request $request)
+    public function destroy()
     {
-        try {
-            // Log the user out
-            Auth::guard('user')->logout();
+        Auth::guard('user')->logout();
 
-            // Invalidate the session to prevent session fixation
-            $request->session()->invalidate();
-
-            // Regenerate the session token to prevent CSRF attacks
-            $request->session()->regenerateToken();
-
-            // Redirect to the homepage or a different route after logout
-            return redirect('/')->with('success', 'Logged out successfully.');
-        } catch (\Exception $e) {
-            // Log the error and send a message back
-            Log::error('Logout error: ' . $e->getMessage());
-            return back()->withErrors(['error' => 'An error occurred during logout. Please try again.']);
-        }
+        return redirect('/login')->with('success', 'Logged out successfully!');
     }
 }
