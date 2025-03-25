@@ -77,7 +77,12 @@
                 </div>
             </div>
 
-
+            <a 
+                href="{{route('admin.static-pages.index')}}"
+                class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg bg-gray-800 text-white group transition-all duration-200 hover:bg-gray-700">
+            
+                Static Pages
+            </a>
 
 
 

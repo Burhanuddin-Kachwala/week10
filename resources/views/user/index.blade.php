@@ -1,10 +1,10 @@
 <x-layout>
-   @if(session('success'))
+   {{-- @if(session('success'))
     <script>
         console.log("Success message found:", "{{ session('success') }}"); // Debugging log
                 toastr.success("{{ session('success') }}", 'Success');
     </script>
-    @endif
+    @endif --}}
     <x-hero />
     <x-genre />
     <div class="m-4 p-4 mb-2">
