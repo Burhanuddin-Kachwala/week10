@@ -1,5 +1,6 @@
 <x-admin.layout class="overflow-x-auto">
 
+    
     <x-forms.form method="POST" action="{{ route('admin.users.update', $user->id) }}" id="edit-user"
         class="p-6 bg-white rounded-lg shadow-md max-w-4xl mx-auto border border-gray-300">
         @csrf

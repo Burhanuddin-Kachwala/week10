@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use App\Http\Controllers\Admin\StaticPageController;
+use App\Http\Controllers\Admin\FroalaImageUploadController;
 
     Route::prefix("admin")->group(function () {
 
@@ -19,6 +20,9 @@ use App\Http\Controllers\Admin\CategoryController;
         });
 
     Route::middleware("auth:admin")->group(function () {
+
+        
+
         Route::get("/dashboard", [AdminController::class, 'index'])->name("admin.dashboard");
         Route::get("/logout", [AdminController::class, "destroy"])->name("admin.logout");
 
@@ -30,6 +34,17 @@ use App\Http\Controllers\Admin\CategoryController;
             Route::put('/{product}', [ProductController::class, 'update'])->name('admin.products.update');
             Route::delete('/{product}', [ProductController::class, 'delete'])->name('admin.products.destroy');
         });
+
+        Route::prefix('static-pages')->group(function () {
+            Route::get("/", [StaticPageController::class, 'index'])->name("admin.static-pages.index");
+            Route::get('/create', [StaticPageController::class, 'create'])->name('admin.static-page.create');
+            Route::post('/create', [StaticPageController::class, 'store'])->name('admin.static-page.store');
+            Route::get('/{staticPage:slug}/edit', [StaticPageController::class, 'edit'])->name('admin.static-page.edit');
+            Route::put('/{staticPage:slug}', [StaticPageController::class, 'update'])->name('admin.static-page.update');  // Corrected this line
+            Route::delete('/{staticPage:slug}', [StaticPageController::class, 'delete'])->name('admin.static-pages.destroy');
+            //Route::post('/upload-image', [StaticPageController::class, 'uploadImage'])->name('admin.static-pages.uploadImage');
+        });
+
 
         Route::prefix('authors')->group(function () {
             Route::get("/", [AuthorController::class, 'index'])->name("admin.authors");
@@ -68,3 +83,6 @@ Route::get('/check-category-name', function (Request $request) {
     $exists = Category::where('name', $request->name)->exists();
     return response()->json(['exists' => $exists]);
 });
+
+
+
