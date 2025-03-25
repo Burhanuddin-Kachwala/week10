@@ -59,3 +59,7 @@ Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('ca
 Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 
 
+//testing mail
+Route::get('/preview-email', function () {
+    return new App\Mail\UserCreated(App\Models\User::first());
+});
