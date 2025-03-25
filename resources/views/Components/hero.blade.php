@@ -11,4 +11,5 @@
                 src="{{ Vite::asset('resources/images/main-banner1.jpg') }}" alt="">
         </div>
     </div>
+    {{-- <x-static-page slug="hero-section-banner"/> --}}
 </section
