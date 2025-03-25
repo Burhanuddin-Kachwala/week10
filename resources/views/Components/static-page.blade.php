@@ -5,7 +5,7 @@
 $page = \App\Models\StaticPage::where('slug', $slug)->first();
 @endphp
 
-@if($page)
+@if($page && $page->status=='active')
 
 <div {!! $attributes->merge(['class' => 'static-page-content']) !!}>
     {!! $page->content !!}
@@ -13,6 +13,6 @@ $page = \App\Models\StaticPage::where('slug', $slug)->first();
 @else
 <!-- Optional: Handle case when no page is found -->
 <div class="text-gray-500">
-    Content not available
+    Content not available | Contact Admin
 </div>
 @endif
