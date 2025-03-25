@@ -69,13 +69,13 @@ class OrderController extends Controller
                     $order->delete();
                     return redirect()->route('cart.index')->with('error', 'One of the products is unavailable.');
                 }
-                Log::info('Inserting Order Item', [
-                    'order_id' => $order->id,
-                    'product_id' => $product->id,
-                    'name' => $item['name'],
-                    'price' => $product->price,
-                    'quantity' => $item['quantity']
-                ]);
+                // Log::info('Inserting Order Item', [
+                //     'order_id' => $order->id,
+                //     'product_id' => $product->id,
+                //     'name' => $item['name'],
+                //     'price' => $product->price,
+                //     'quantity' => $item['quantity']
+                // ]);
                 //dd($order->id, $product->id, $item['name'], $product->price, $item['quantity']);
                 // Create and save the order item
                 
