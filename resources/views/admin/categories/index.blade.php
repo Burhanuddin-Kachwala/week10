@@ -50,7 +50,7 @@
         role="alert" id="success-alert">
         <span class="block sm:inline">{{ session('success') }}</span>
     </div> --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             setTimeout(function() {
@@ -58,5 +58,5 @@
             }, 3000);
         });
     </script>
-    @endif
+    @endif --}}
 </x-admin.layout>
