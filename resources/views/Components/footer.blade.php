@@ -1,4 +1,4 @@
-<footer class="px-3 pt-4 lg:px-9  overflow-x-hidden">
+<footer class="px-3 pt-4 lg:px-9 overflow-x-hidden">
 
     {{-- <div class="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
     
