@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Jobs\SendEmail;
 use App\Models\Product;
+use App\Mail\OrderPlaced;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Services\CartService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class OrderController extends Controller
 {
@@ -93,6 +96,16 @@ class OrderController extends Controller
 
             // Clear the cart after successful order
             $this->cartService->clearCart();
+
+            // Dispatch the email using queue
+            try {
+                dispatch(new SendEmail(new OrderPlaced($order), $order->user->email));
+            } catch (Exception $emailError) {
+                Log::error('Email sending failed: ' . $emailError->getMessage());
+            }
+
+
+
 
             return redirect()->route('order.confirmation', ['order' => $order->id])
                 ->with('success', 'Your order has been placed successfully!');
