@@ -13,6 +13,7 @@ import.meta.glob([
 // Add this to your main JS file or include it in a script tag
 
 document.addEventListener('DOMContentLoaded', function() {
+    const cartCountElement = document.getElementById("cart-count");
     // Handle AJAX form submission for Add to Cart
     const addToCartForms = document.querySelectorAll('.add-to-cart-form');
     
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to update cart count in header
     function updateCartCount(count) {
-        const cartCountElement = document.getElementById('cart-count');
+        //const cartCountElement = document.getElementById('cart-count');
         if (cartCountElement) {
             cartCountElement.textContent = count;
             
