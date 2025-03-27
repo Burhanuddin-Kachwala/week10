@@ -1,16 +1,17 @@
 <?php
 
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\OrderController;
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\User\AddressController;
-
+use App\Models\Author;
 
 Route::get('/', function () {
     return view('user.index');
@@ -48,6 +49,28 @@ Route::get('/products', [UserController::class, 'showAll'])->name('products.all'
 Route::get('/products/{product:slug}', [UserController::class, 'show'])->name('products.show');
 Route::get('/categories/{category:slug}', [UserController::class, 'category'])->name('categories.show');
 Route::get('/search', [UserController::class, 'search'])->name('search');
+
+
+//testing new feature of search suggestion 
+Route::get('/searchSuggest', function (Request $request) {
+    $query = $request->get('q');
+
+    // Get Products based on the query
+    $productResults = Product::where('name', 'LIKE', "%{$query}%")
+        ->take(5)  // Limit results to 5
+        ->get();
+
+    // Get Authors based on the query
+    $authorResults = Author::where('name', 'LIKE', "%{$query}%")
+        ->take(5)  // Limit results to 5
+        ->get();
+
+    // Merge the two collections into a single collection
+    $results = $productResults->merge($authorResults);
+
+    // Return the results as JSON
+    return response()->json($results);
+});
 
 
 
