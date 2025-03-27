@@ -44,8 +44,8 @@
                                         <button type="submit" class="ml-2 text-xs text-blue-600">Update</button>
                                     </form>
                                 </td>
-                                <td class="px-6 py-4 text-right">${{ number_format($item['price'], 2) }}</td>
-                                <td class="px-6 py-4 text-right">${{ number_format($item['price'] * $item['quantity'],
+                                <td class="px-6 py-4 text-right">₹{{ number_format($item['price'], 2) }}</td>
+                                <td class="px-6 py-4 text-right">₹{{ number_format($item['price'] * $item['quantity'],
                                     2) }}
                                 </td>
                                 <td class="px-6 py-4 text-right">
@@ -80,7 +80,7 @@
                     <h2 class="text-lg font-semibold mb-4">Order Summary</h2>
                     <div class="flex justify-between mb-2">
                         <span>Subtotal</span>
-                        <span>${{ number_format($cartTotal, 2) }}</span>
+                        <span>₹{{ number_format($cartTotal, 2) }}</span>
                     </div>
                     <div class="flex justify-between mb-2">
                         <span>Shipping</span>
@@ -89,7 +89,7 @@
                     <hr class="my-2">
                     <div class="flex justify-between mb-2 font-semibold">
                         <span>Total</span>
-                        <span>${{ number_format($cartTotal, 2) }}</span>
+                        <span>₹{{ number_format($cartTotal, 2) }}</span>
                     </div>
 
                     <a href="{{ route('checkout.index') }}">
