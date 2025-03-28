@@ -21,7 +21,7 @@ $("#search-input").typeahead(
             // Suggestion Template
             suggestion: function (data) {
                 return `
-                    <div class="flex bg-white items-center space-x-4 p-2 w-full lg:w-auto hover:bg-gray-200 cursor-pointer transition duration-200">
+                    <div class="flex bg-white items-center space-x-4 p-2 w-full lg:w-auto hover:bg-gray-200 cursor-pointer transition duration-200 ">
                         <img src="${data.image}" alt="${data.name}" class="w-12 h-12 rounded-lg object-cover">
                         <div class="flex-1">
                             <p class="text-gray-800 font-semibold text-sm">${data.name}</p>
@@ -44,3 +44,24 @@ $("#search-input").typeahead(
         },
     }
 );
+
+// After suggestions are rendered, add "Show All Products" button
+$("#search-input").on("typeahead:render", function(event, suggestions, dataset) {
+    
+    if (suggestions.length > 4) {
+        // Add the button if there are more than 5 products
+        $(".tt-dataset").append(`
+            <div class="p-2 text-center bg-white">
+                <button class="w-full bg-primary text-white px-4 py-2 rounded-md hover:bg-orange-700 transition duration-200">
+                    Show All Products
+                </button>
+            </div>
+        `);
+        // Apply the blur effect to the background
+        $("main").addClass("blur-background-active");
+    }
+}); 
+// Remove blur effect when suggestions are hidden
+$("#search-input").on("typeahead:close", function() {
+    $("main").removeClass("blur-background-active");
+});
