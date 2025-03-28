@@ -36,6 +36,16 @@ Route::middleware(['auth:user'])->group(function () {
     //routes for address
     Route::get('/addresses', [AddressController::class, 'index'])->name('addresses');
     Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
+
+    //displaying user details
+    Route::get('/display/user/details', [UserController::class, 'showDetails'])->name('display-user-details');
+
+    
+
+    //edit user details
+    Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+    //edit address
+    Route::put('/address', [UserController::class, 'updateAddress'])->name('user.address.update');
 });
 
 
@@ -48,6 +58,8 @@ Route::get('/check-user-email', function (Request $request) {
 Route::get('/products', [UserController::class, 'showAll'])->name('products.all');
 Route::get('/products/{product:slug}', [UserController::class, 'show'])->name('products.show');
 Route::get('/categories/{category:slug}', [UserController::class, 'category'])->name('categories.show');
+
+//search page route
 Route::get('/search', [UserController::class, 'search'])->name('search');
 
 
@@ -75,14 +87,20 @@ Route::get('/searchSuggest', function (Request $request) {
 
 
 // Cart routes
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
-Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
-Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+Route::prefix('cart')->name('cart.')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('index');
+    Route::post('/add', [CartController::class, 'addToCart'])->name('add');
+    Route::post('/update', [CartController::class, 'updateCart'])->name('update');
+    Route::post('/remove', [CartController::class, 'removeFromCart'])->name('remove');
+    Route::post('/clear', [CartController::class, 'clearCart'])->name('clear');
+});
+
 
 
 //testing mail
 Route::get('/preview-email', function () {
     return new App\Mail\UserCreated(App\Models\User::first());
 });
+
+
+

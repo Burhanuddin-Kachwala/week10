@@ -4,6 +4,7 @@ import './bootstrap';
 import './validate.js';
 import './image-preview.js';
 import './search-suggestion.js';
+import './form-toggle.js';
 import.meta.glob([
     '../images/**'
 ]);
