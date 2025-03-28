@@ -129,4 +129,5 @@ class ProductController extends Controller
             return redirect()->route('admin.products')->with('error', 'Failed to delete product.');
         }
     }
+   
 }
