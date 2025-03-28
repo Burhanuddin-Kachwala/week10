@@ -31,7 +31,7 @@
 
         <!-- Recent Orders -->
         <div class="mt-6">
-            <h2 class="text-xl font-semibold mb-4">Recent Orders</h2>
+            <h2 class="text-xl font-semibold mb-4">Orders</h2>
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white">
                     <thead>
@@ -76,6 +76,10 @@
                         @endforelse
                     </tbody>
                 </table>
+                
+            </div>
+            <div class="mt-2">
+                {{$recentOrders->links()}}
             </div>
         </div>
     </div>

@@ -26,7 +26,7 @@ class AdminController extends Controller
             $totalCategories = Category::count();
             $totalOrders = Order::count();
             $totalRevenue = Order::sum('total_amount'); // Ensure 'total_amount' exists
-            $recentOrders = Order::with('user')->latest()->take(5)->get();
+            $recentOrders = Order::with('user')->latest()->simplePaginate(5);
 
             return view('admin.index', compact('totalBooks', 'totalCategories', 'totalOrders', 'totalRevenue', 'recentOrders'));
             // Render the admin dashboard page
