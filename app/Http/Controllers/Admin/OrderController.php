@@ -57,4 +57,12 @@ class OrderController extends Controller
             ], 500);
         }
     }
+
+    public function getOrderDetails(Request $request)
+    {
+        $orderId = $request->input('order_id');
+        $order = Order::with(['user', 'orderItems'])->findOrFail($orderId);
+
+        return view('admin.orders.details_partial', compact('order'));
+    }
 }

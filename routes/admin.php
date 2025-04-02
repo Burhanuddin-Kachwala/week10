@@ -74,7 +74,9 @@ use App\Http\Controllers\Admin\FroalaImageUploadController;
             Route::delete('/{user}', [UserController::class, 'delete'])->name('admin.users.destroy');
         });
         //testing for update order status
-        Route::post('/update-order-status', [OrderController::class, 'updateStatus'])->name('update-order-status');;
+        Route::post('/update-order-status', [OrderController::class, 'updateStatus'])->name('update-order-status');
+
+        Route::get('/admin/orders/details', [OrderController::class, 'getOrderDetails'])->name('admin.orders.details');
     });
 });
 Route::get('/check-author-name', function (Request $request) {
