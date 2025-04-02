@@ -8,9 +8,10 @@
 @php
 $query = \App\Models\Product::latest();
 
+
 // Filter by category if provided
 if ($categoryId) {
-    $query->where('category_id', $categoryId);
+$query->where('category_id', $categoryId);
 }
 
 // Filter by search term if provided
@@ -31,7 +32,7 @@ $subQuery->where('name', 'like', "%{$search}%");
 
 // Limit number of products if specified
 if ($noOfProducts) {
-    $query->limit($noOfProducts);
+$query->limit($noOfProducts);
 }
 
 $products = $query->get();
@@ -39,9 +40,9 @@ $products = $query->get();
 // Get category name for heading if categoryId is provided
 $categoryName = '';
 if ($categoryId) {
-    $category = \App\Models\Category::find($categoryId);
+$category = \App\Models\Category::find($categoryId);
 if ($category) {
-    $categoryName = $category->name;
+$categoryName = $category->name;
 }
 }
 
@@ -54,15 +55,18 @@ $displayHeading = $categoryId && $categoryName ? "$heading - $categoryName" : $h
 @if($products->count() > 0)
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     @foreach ($products as $product)
-    <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="{{ route('products.show', $product->slug) }}" class="flex flex-col">
+    <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">        <a href="{{ route('products.show', $product->slug) }}" class="flex flex-col">
             <img src="{{asset($product->image)}}" alt="{{ $product->name}}"
                 class="h-80 w-72 object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-72">
                 <span class="text-gray-400 mr-3 uppercase text-xs">{{ $product->author->name }}</span>
                 <p class="text-lg font-bold text-black truncate block capitalize">{{ $product->name }}</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-black cursor-auto my-3">${{ $product->price }}</p>
+                <div class="flex items-center justify-between">
+                    <p class="text-lg font-semibold text-black cursor-auto my-3">₹{{ $product->price }}</p>
+
+                    <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <button
                         class="ml-auto bg-secondary text-white px-3 py-1 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -73,6 +77,7 @@ $displayHeading = $categoryId && $categoryName ? "$heading - $categoryName" : $h
                                 d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
                         </svg>
                     </button>
+                    </form>
                 </div>
             </div>
         </a>
