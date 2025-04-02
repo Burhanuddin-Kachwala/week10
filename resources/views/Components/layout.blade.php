@@ -30,7 +30,7 @@
 
     /* When the blur effect is triggered, it will apply the blur */
     .blur-background-active {
-        filter: blur(3px);
+        filter: blur(2px);
         /* Adjust the blur intensity as needed */
     }
 
