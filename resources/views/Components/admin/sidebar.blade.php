@@ -37,7 +37,7 @@
             Dashboard
         </a>
 
-        <!-- Analytics Dropdown -->
+        <!-- Manage Page  Dropdown -->
         <div class="space-y-1">
             <button
                 class="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none">
@@ -76,6 +76,10 @@
             </div>
         </div>
 
+
+       
+
+       
         <!-- Static Pages -->
         <a href="{{ route('admin.static-pages.index') }}"
             class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700 {{ request()->routeIs('admin.static-pages.index') ? 'bg-gray-800' : '' }}">
@@ -85,6 +89,33 @@
             </svg>
             Static Pages
         </a>
+
+       
+        <span>
+             @can('admin')
+            
+        
+        <!-- Roles -->
+        <a href="{{ route('roles.index') }}"
+            class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700 {{ request()->routeIs('admin.roles.index') ? 'bg-gray-800' : '' }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" class="w-6 h-6 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M15 11a4 4 0 10-6 0m8 8v-2a4 4 0 00-3-3.87M12 7a4 4 0 110 8 4 4 0 010-8z" />
+            </svg>
+            Roles
+        </a>
+        
+        <!-- Permissions -->
+        <a href="{{ route('permissions.index') }}"
+            class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-white group transition-all duration-200 hover:bg-gray-700 {{ request()->routeIs('admin.permissions.index') ? 'bg-gray-800' : '' }}">
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" class="w-5 h-5 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l8 4v6a8 8 0 01-16 0V6l8-4z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+        </svg>
+            Permissions
+        </a>
+        </span>
+        @endcan
     </div>
 </nav>
 

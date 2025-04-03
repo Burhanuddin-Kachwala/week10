@@ -23,4 +23,9 @@ class Admin extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    //checks directly in AuthServiceProvider
+    // public function hasPermission($permissionSlug)
+    // {
+    //     return $this->role->permissions->contains('slug', $permissionSlug);
+    // }
 }

@@ -4,12 +4,14 @@ use App\Models\Author;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\StaticPageController;
 use App\Http\Controllers\Admin\FroalaImageUploadController;
 
@@ -34,7 +36,7 @@ use App\Http\Controllers\Admin\FroalaImageUploadController;
             Route::get('/{product:slug}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
             Route::put('/{product}', [ProductController::class, 'update'])->name('admin.products.update');
             Route::delete('/{product}', [ProductController::class, 'delete'])->name('admin.products.destroy');
-        });
+        })->can('add-product');
 
         Route::prefix('static-pages')->group(function () {
             Route::get("/", [StaticPageController::class, 'index'])->name("admin.static-pages.index");
@@ -57,7 +59,7 @@ use App\Http\Controllers\Admin\FroalaImageUploadController;
         });
 
         Route::prefix('categories')->group(function () {
-            Route::get("/", [CategoryController::class, 'index'])->name("admin.categories");
+            Route::get("/", [CategoryController::class, 'index'])->name("admin.categories")->can('admin');
             Route::get('/create', [CategoryController::class, 'create'])->name('admin.categories.create');
             Route::post('/', [CategoryController::class, 'store'])->name('admin.categories.store');
             Route::get('/{category:slug}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
@@ -66,7 +68,7 @@ use App\Http\Controllers\Admin\FroalaImageUploadController;
         });
 
         Route::prefix('users')->group(function () {
-            Route::get("/", [UserController::class, 'index'])->name("admin.users");
+            Route::get("/", [UserController::class, 'index'])->name("admin.users")->can('edit-users');
             Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('/', [UserController::class, 'store'])->name('admin.users.store');
             Route::get('/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
@@ -77,6 +79,10 @@ use App\Http\Controllers\Admin\FroalaImageUploadController;
         Route::post('/update-order-status', [OrderController::class, 'updateStatus'])->name('update-order-status');
 
         Route::get('/admin/orders/details', [OrderController::class, 'getOrderDetails'])->name('admin.orders.details');
+
+        //routes for roles and peprmissions
+        Route::resource('roles', RoleController::class);
+        Route::resource('permissions', PermissionController::class);
     });
 });
 Route::get('/check-author-name', function (Request $request) {
