@@ -13,13 +13,15 @@ class OrderPlaced extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $order;
+    public $recipientType;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order,$recipientType='user')
     {
         $this->order = $order;
+        $this->recipientType = $recipientType;
     }
 
     /**
@@ -27,7 +29,15 @@ class OrderPlaced extends Mailable implements ShouldQueue
      */
     public function build(): self
     {
-        return $this->subject('Your Order Has Been Placed Successfully!')
-            ->view('emails.orders.placed');
+        $subject = ($this->recipientType === 'admin')
+            ? 'New Order Received - Admin Notification'
+            : 'Your Order Confirmation';
+
+        return $this->subject($subject)
+            ->view('emails.orders.placed')
+            ->with([
+                'order' => $this->order,
+                'recipientType' => $this->recipientType
+            ]);
     }
 }

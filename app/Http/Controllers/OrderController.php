@@ -100,6 +100,7 @@ class OrderController extends Controller
             // Dispatch the email using queue
             try {
                 dispatch(new SendEmail(new OrderPlaced($order), $order->user->email));
+                dispatch(new SendEmail(new OrderPlaced($order,'admin'), 'admin@booksaw.com'));
             } catch (Exception $emailError) {
                 Log::error('Email sending failed: ' . $emailError->getMessage());
             }

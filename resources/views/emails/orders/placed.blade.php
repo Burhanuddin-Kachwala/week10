@@ -42,12 +42,18 @@
             </div>
 
             <div class="p-6">
+                @if($recipientType === 'admin')
+                <h2>New Order Notification</h2>
+                <p>Dear Admin,</p>
+                <p>A new order has been placed with the following details:</p>
+                @else
                 <p class="text-gray-700 mb-4">Hello {{ $order->user->name }},</p>
 
                 <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
                     <p class="text-green-700 font-semibold">🎉 Your order #{{ $order->id }} has been placed
                         successfully!</p>
                 </div>
+                @endif
 
                 <div class="mb-6">
                     <h2 class="text-xl font-semibold text-gray-800 mb-4">Order Summary</h2>
@@ -64,7 +70,7 @@
                             <tr class="border-b border-gray-100 last:border-b-0">
                                 <td class="py-2">{{ $item->name }}</td>
                                 <td class="py-2 text-center">{{ $item->quantity }}</td>
-                                <td class="py-2 text-right">${{ number_format($item->price, 2) }}</td>
+                                <td class="py-2 text-right">₹{{ number_format($item->price, 2) }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -72,7 +78,7 @@
 
                     <div class="text-right">
                         <p class="text-xl font-bold text-gray-900">
-                            Total Amount: ${{ number_format($order->total_amount, 2) }}
+                            Total Amount: ₹{{ number_format($order->total_amount, 2) }}
                         </p>
                     </div>
                 </div>
@@ -83,11 +89,12 @@
                         View Other Products
                     </a>
                 </div>
-
+                @if($recipientType==='user')
                 <div class="text-center text-gray-500 pt-4 border-t border-gray-200">
                     <p>Thank you for shopping with <span class="font-bold text-gray-700">BookSaw</span>!</p>
                     <p class="text-sm mt-2">Best regards,<br>The BookSaw Team</p>
                 </div>
+                @endif
             </div>
         </div>
 
