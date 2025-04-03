@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     updateCartCount(data.cart_count);
                     
                     // Show notification
-                    showNotification(data.message);
+                   notyf.success(data.message);
                 }
             })
             .catch(error => {
@@ -55,30 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (cartCountElement) {
             cartCountElement.textContent = count;
             
-            // Optional: Add animation effect
-            cartCountElement.classList.add('animate-pulse');
-            setTimeout(() => {
-                cartCountElement.classList.remove('animate-pulse');
-            }, 1000);
+            // // Optional: Add animation effect
+            // cartCountElement.classList.add('animate-pulse');
+            // setTimeout(() => {
+            //     cartCountElement.classList.remove('animate-pulse');
+            // }, 1000);
         }
     }
     
-    // Function to show notification
-    function showNotification(message) {
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.classList.add('fixed', 'top-4', 'right-4', 'bg-green-500', 'text-white', 'px-4', 'py-2', 'rounded', 'shadow-lg', 'z-50');
-        notification.textContent = message;
-        
-        // Add to DOM
-        document.body.appendChild(notification);
-        
-        // Remove after 3 seconds
-        setTimeout(() => {
-            notification.classList.add('opacity-0', 'transition-opacity', 'duration-500');
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 500);
-        }, 3000);
-    }
+   
 });
+
