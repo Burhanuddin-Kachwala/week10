@@ -97,6 +97,7 @@ Route::prefix('cart')->name('cart.')->group(function () {
 
 
 
+
 //testing mail
 Route::get('/preview-email', function () {
     return new App\Mail\UserCreated(App\Models\User::first());

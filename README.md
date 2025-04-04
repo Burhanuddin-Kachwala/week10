@@ -22,7 +22,7 @@ Ensure you have the following installed:
 
 1. **Clone the Repository**
    ```sh
-   git clone https://github.com/yourusername/booksaw.git
+   git clone https://github.com/Burhanuddin-Kachwala/week10.git
    cd booksaw
    ```
 
