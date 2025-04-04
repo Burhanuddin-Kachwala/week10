@@ -57,6 +57,7 @@ Ensure you have the following installed:
 5. **Run the Application**
    ```sh
    php artisan serve
+   composer run dev
    ```
    The project will be accessible at `http://127.0.0.1:8000/`
 
