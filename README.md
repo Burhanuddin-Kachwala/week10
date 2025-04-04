@@ -13,6 +13,7 @@ BookSaw is a feature-rich e-commerce platform built with Laravel, designed for s
 ### Prerequisites:
 Ensure you have the following installed:
 - PHP (>=8.0)
+- Laravel (>=12)
 - Composer
 - MySQL
 - Node.js & NPM (for frontend assets)
