@@ -1,66 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# BookSaw - E-commerce Bookstore
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+BookSaw is a feature-rich e-commerce platform built with Laravel, designed for selling books online. It provides user authentication, book browsing, order management, and admin functionalities to manage the store efficiently.
 
-## About Laravel
+## 🚀 Technologies Used
+- **Backend**: Laravel (PHP Framework)
+- **Frontend**: Blade Templates, Tailwind CSS, jQuery
+- **Database**: MySQL
+- **Other Tools**: AJAX, JavaScript, Composer, Laravel Artisan, Mailosaur
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📦 Installation Steps
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Prerequisites:
+Ensure you have the following installed:
+- PHP (>=8.0)
+- Composer
+- MySQL
+- Node.js & NPM (for frontend assets)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Steps to Install and Run:
 
-## Learning Laravel
+1. **Clone the Repository**
+   ```sh
+   git clone https://github.com/yourusername/booksaw.git
+   cd booksaw
+   ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. **Install Dependencies**
+   ```sh
+   composer install
+   npm install
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+3. **Setup Environment**
+   - Copy the `.env.example` file to `.env`:
+     ```sh
+     cp .env.example .env
+     ```
+   - Generate the application key:
+     ```sh
+     php artisan key:generate
+     ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. **Configure Database**
+   - In `.env`, update the following with your database details:
+     ```env
+     DB_DATABASE=booksaw_db
+     DB_USERNAME=root
+     DB_PASSWORD=yourpassword
+     ```
+   - Run migrations and seed the database:
+     ```sh
+     php artisan migrate --seed
+     ```
 
-## Laravel Sponsors
+5. **Run the Application**
+   ```sh
+   php artisan serve
+   ```
+   The project will be accessible at `http://127.0.0.1:8000/`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+6. **Compile Assets (If Needed)**
+   ```sh
+   npm run dev
+   ```
 
-### Premium Partners
+## 📧 Setting Up Mailosaur for Email Testing
+Mailosaur is used for email testing in the application.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. **Create a Mailosaur Account**
+   - Sign up at [Mailosaur](https://mailosaur.com/) and create a new project.
 
-## Contributing
+2. **Update Environment Variables**
+   - In `.env`, add the following Mailosaur settings:
+     ```env
+     MAIL_MAILER=smtp
+     MAIL_HOST=smtp.mailosaur.net
+     MAIL_PORT=587
+     MAIL_USERNAME=your-mailosaur-server-id
+     MAIL_PASSWORD=your-mailosaur-api-key
+     MAIL_ENCRYPTION=tls
+     MAIL_FROM_ADDRESS=no-reply@yourdomain.com
+     MAIL_FROM_NAME="BookSaw"
+     ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Test Email Sending**
+   - Run the Laravel queue worker:
+     ```sh
+     php artisan queue:work
+     ```
+   - Send a test email using:
+     ```sh
+     php artisan tinker
+     >>> Mail::raw('This is a test email', function ($message) {
+     >>>     $message->to('test@yourmailosaurserver.mailosaur.net')->subject('Test Email');
+     >>> });
+     ```
 
-## Code of Conduct
+4. **Verify Emails in Mailosaur Dashboard**
+   - Log in to your Mailosaur account and check the inbox of your test server.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🎯 Features
+- User authentication (login, register, reset password)
+- Browse books by categories
+- Add books to cart and checkout
+- Order management for users and admins
+- Admin panel to manage books, orders, and users
+- Email testing with Mailosaur
 
-## Security Vulnerabilities
+---
+**Note**: Ensure proper permissions for the `storage` and `bootstrap/cache` directories:
+```sh
+chmod -R 777 storage bootstrap/cache
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Enjoy using **BookSaw**! 📚
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

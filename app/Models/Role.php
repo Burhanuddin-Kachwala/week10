@@ -11,10 +11,16 @@ class Role extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['role_name'];
+    protected $fillable = ['name','slug'];
 
     public function admins(): HasMany
     {
         return $this->hasMany(Admin::class);
+    }
+    
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'role_permission');
     }
 }

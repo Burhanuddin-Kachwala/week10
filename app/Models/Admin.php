@@ -12,9 +12,6 @@ class Admin extends Authenticatable
 {
     use HasFactory;
     // protected $guard = 'admin';
-
-
-
     protected $table = 'admins';
 
     protected $fillable = ['first_name', 'last_name', 'email', 'password', 'role_id'];
@@ -23,4 +20,9 @@ class Admin extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    //checks directly in AuthServiceProvider
+    // public function hasPermission($permissionSlug)
+    // {
+    //     return $this->role->permissions->contains('slug', $permissionSlug);
+    // }
 }
